@@ -1,0 +1,203 @@
+/* ===== PAGE WRAPPER ===== */
+.table-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 30px 20px;
+}
+
+/* ===== CONTAINER ===== */
+.table-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ===== TITLE ===== */
+.table-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+
+/* ===== RESPONSIVE WRAPPER ===== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ===== TABLE ===== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+  background: #fff;
+}
+
+/* ===== HEADER ===== */
+.admin-table thead {
+  background: #1e293b;
+}
+
+.admin-table th {
+  color: white;
+  text-align: left;
+  padding: 16px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ===== BODY CELLS ===== */
+.admin-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+/* ===== ROW HOVER ===== */
+.admin-table tbody tr {
+  transition: 0.3s ease;
+}
+
+.admin-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ===== IMAGE ===== */
+.table-image {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+/* ===== DESCRIPTION CELL ===== */
+.admin-table td:nth-child(2) {
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+/* ===== OPTIONAL ACTION BUTTONS ===== */
+.table-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+.edit-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* ===== EMPTY TEXT ===== */
+.empty-text {
+  text-align: center;
+  padding: 30px;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .table-page {
+    padding: 20px 12px;
+  }
+
+  .table-container {
+    padding: 18px;
+  }
+
+  .table-title {
+    font-size: 24px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+
+  .table-image {
+    width: 55px;
+    height: 55px;
+  }
+  /* ===== ACTION BUTTONS ===== */
+.table-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.view-btn,
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+/* View */
+.view-btn {
+  background: #0ea5e9;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #0284c7;
+}
+
+/* Edit */
+.edit-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Delete */
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+}

@@ -9,6 +9,8 @@ import Footer from './components/footer/Footer'
 import LoginPOPup from './components/loginPopup/LoginPOPup.Jsx'
 import AdminLayout from './admin/admin-components/admin-layout'
 import Dashboard from './admin/AdminPages/Dashboard'
+import AddCategory from './admin/AdminPages/category/add-category'
+import AllCategories from './admin/AdminPages/category/get-categories'
 
 
 const App = () => {
@@ -29,7 +31,9 @@ const App = () => {
       <div>
         <Routes>
           <Route path='/food-app/admin' element={<AdminLayout />} />
-          <Route path="/food-app/dashboard" element={<Dashboard />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/food-app/admin/add-category" element={<AddCategory />} />
+          <Route path="/food-app/admin/all-categories" element={<AllCategories />} />
         </Routes>
       </div>
     </>

@@ -14,7 +14,7 @@ namespace E_Commerce.Application.RRModels.Categry
         public string Description { get; set; }
         public DateTimeOffset CreatedOn { get; set; } 
         public bool IsDeleted { get; set; } = false;
-        public string? File { get; set; }
+        public string? FilePath { get; set; }
         public bool UpdatedAt { get; set; } = false;
     }
 

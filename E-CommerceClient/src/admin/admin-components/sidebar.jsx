@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaTachometerAlt,
   FaBoxOpen,
@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 
 const Sidebar = () => {
+  const navigate = useNavigate()
   return (
     <div className="sidebar">
       <h2 className="logo">Admin Panel</h2>
@@ -43,7 +44,7 @@ const Sidebar = () => {
           <FaMoneyBillWave /> <span>Payments</span>
         </NavLink>
 
-        <NavLink to="/admin/categories" className="nav-item">
+        <NavLink to="/food-app/admin/all-categories" className="nav-item">
           <FaTags /> <span>Categories</span>
         </NavLink>
 

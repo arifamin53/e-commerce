@@ -1,0 +1,176 @@
+/* ===== FORM WRAPPER ===== */
+.form-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* ===== FORM CONTAINER ===== */
+.form-container {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== FORM TITLE ===== */
+.form-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ===== FORM ===== */
+.common-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== FORM GROUP ===== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== LABEL ===== */
+.form-group label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* ===== INPUT / TEXTAREA / SELECT ===== */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+/* ===== FOCUS EFFECT ===== */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===== TEXTAREA ===== */
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ===== FILE INPUT ===== */
+.form-group input[type="file"] {
+  padding: 10px;
+  border: 1px dashed #94a3b8;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+/* ===== PLACEHOLDER ===== */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* ===== BUTTON ===== */
+.form-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.form-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* ===== SECONDARY BUTTON (optional) ===== */
+.form-btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background: #e2e8f0;
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.form-btn-secondary:hover {
+  background: #cbd5e1;
+}
+
+/* ===== ERROR TEXT ===== */
+.form-error {
+  font-size: 13px;
+  color: #dc2626;
+  margin-top: 4px;
+}
+
+/* ===== SMALL TEXT ===== */
+.form-text {
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+}
+
+/* ===== LINK ===== */
+.form-link {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== TWO COLUMN FORM (optional) ===== */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 22px;
+  }
+
+  .form-title {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

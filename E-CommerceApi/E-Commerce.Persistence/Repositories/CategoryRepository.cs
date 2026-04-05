@@ -16,7 +16,12 @@ namespace E_Commerce.Persistence.Repositories
     {
         public async Task<IEnumerable<CategoryResponse>> GetCategories()
         {
-            return await ExecuteStoredProcedureAsync<CategoryResponse>("sp_GetAllEmployees");
+            var sql = $@" select c.id,c.name,c.description,c.updatedAt,c.isDeleted,c.createdon,f.filePath
+                          From Categories c
+                          inner join AppFiles f
+                          on f.entityId=c.id
+                           ";
+            return await ExecuteStoredProcedureAsync<CategoryResponse>(sql);
         }
 
         public async Task<CategoryCompactResponse> GetCategory(int pageNo, int Pagesize, string name)

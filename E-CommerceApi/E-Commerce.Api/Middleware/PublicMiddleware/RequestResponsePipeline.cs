@@ -21,6 +21,7 @@ namespace E_Commerce.Api.Middleware.PublicMiddleware
             app.UseRouting();
             app.UseAuthorization();
             app.MapCarter();
+            app.UseStaticFiles();
 
             app.UseRequestReultMiddleware();
             app.Run();
