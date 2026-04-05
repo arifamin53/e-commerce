@@ -1,0 +1,24 @@
+﻿using E_commerce.Domain.Entities;
+using E_Commerce.Application.Abstraction.IRepository;
+using E_Commerce.Application.RRModels.Product;
+using E_Commerce.Persistence.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+
+namespace E_Commerce.Persistence.Repositories
+{
+    public class ProductRepository(E_CommerceDbContext context) : BaseRepository<Product>(context), IProductRepository
+    {
+        public async Task<IEnumerable<ProductResponse>> ProductsByCategoryId(Guid id)
+        {
+            return await ExecuteStoredProcedureAsync<ProductResponse>("sp_ProductsByCategoryId", new {id} );
+        }
+
+        public async Task<ProductResponse> ProductsById(Guid id)
+        {
+            return await FirstOrDefaultAsync<ProductResponse>("sp_ProductBYId", new { id }, CommandType.StoredProcedure);
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export const authToken = "food_delivery-app";
