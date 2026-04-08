@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../appUrls";
 import { getAuthToken } from "../../serverActions";
+import { toast } from "react-toastify";
 
 export const apiClient = axios.create({
         baseURL:API_URL

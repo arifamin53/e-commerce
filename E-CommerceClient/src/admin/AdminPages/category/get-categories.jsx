@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Base_url } from '../../../constents/appUrls';
-import { getCategories } from '../../../service/categoryServices/categoryService';
+import { deleteCategory, getCategories } from '../../../service/categoryServices/categoryService';
 import  "../../../components/CommonForm_css/table.css"
 
 const AllCategories = () => {
@@ -53,7 +53,7 @@ const AllCategories = () => {
                         <div className="table-actions">
                           <button className="view-btn">View</button>
                           <button className="edit-btn">Edit</button>
-                          <button className="delete-btn">Delete</button>
+                          <button className="delete-btn" onClick={()=>deleteCategory(item.id)}>Delete</button>
                         </div>
                       </td>
                     </td>
