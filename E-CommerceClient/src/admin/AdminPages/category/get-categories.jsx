@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Base_url } from '../../../constents/appUrls';
 import { deleteCategory, getCategories } from '../../../service/categoryServices/categoryService';
 import  "../../../components/CommonForm_css/table.css"
+import { useNavigate } from 'react-router-dom';
 
 const AllCategories = () => {
   const [categories, setCategories] = useState();
-
+const navigate=useNavigate();
   const fetchingCategories = async () => {
     const response = await getCategories();
     if (response.isSuccess) {
@@ -52,7 +53,7 @@ const AllCategories = () => {
                       <td>
                         <div className="table-actions">
                           <button className="view-btn">View</button>
-                          <button className="edit-btn">Edit</button>
+                          <button className="edit-btn" onClick={()=>navigate(`/food-app/admin/edit-category/${item.id}`)}>Edit</button>
                           <button className="delete-btn" onClick={()=>deleteCategory(item.id)}>Delete</button>
                         </div>
                       </td>

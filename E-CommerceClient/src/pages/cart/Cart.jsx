@@ -1,10 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./cart.css"
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 const Cart = () => {
   const navigate=useNavigate()
-  const {cartItem,food_list,removeFromCart,getTotalCartAmount}=useContext(StoreContext)
+  const {cartItem,food_list,removeFromCart,getTotalCartAmount,setCartItem}=useContext(StoreContext)
+  const [items,setItems]=useState({});
+
+  useEffect(()=>{
+ const storedItem=localStorage.getItem("cart");
+ if(storedItem){
+  setCartItem(JSON.parse(storedItem))
+ }
+  },[]);
+
+  
+
+ console.log(cartItem)
+  console.log(items)
   return (
     <div className='cart'>
       <div className='cart-items'>

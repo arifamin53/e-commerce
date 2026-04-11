@@ -82,6 +82,16 @@ namespace E_Commerce.Application.Services
             return Result<ProductResponse>.Failure("something went wrong please try after someTime", StatusCodes.Status500InternalServerError);
         }
 
+        public async Task<Result<IEnumerable<ProductResponse>>> GetProdusts()
+        {
+            var products = await productRepository.GetProducts();
+            if(products is not null)
+            {
+                return Result<IEnumerable<ProductResponse>>.Success(products, "Products Fetched Successfully");
+            }
+            return Result<IEnumerable<ProductResponse>>.Failure("SomeThing Went wrong please try after someTime",StatusCodes.Status500InternalServerError);
+        }
+
         public async Task<Result<ProductResponse>> ProductById(Guid id)
         {
             var product = await productRepository.ProductsById(id);

@@ -11,6 +11,7 @@ import AdminLayout from './admin/admin-components/admin-layout'
 import Dashboard from './admin/AdminPages/Dashboard'
 import AddCategory from './admin/AdminPages/category/add-category'
 import AllCategories from './admin/AdminPages/category/get-categories'
+import EditCategory from './admin/AdminPages/category/Edit-Category'
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
       <div className='app'>
         {/* <Navbar setShowLogin={setShowLogin}/> */}
         <Routes>
-          <Route path='food-app/' element={<Home />} />
+          <Route path='/' element={<Home />} />
           <Route path='/food-app/cart' element={<Cart />} />
           <Route path='/food-app/place-order' element={<PlaceOrder />} />
         </Routes>
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/food-app/admin/add-category" element={<AddCategory />} />
           <Route path="/food-app/admin/all-categories" element={<AllCategories />} />
+          <Route path="/food-app/admin/edit-category/:id" element={<EditCategory />} />
         </Routes>
       </div>
     </>

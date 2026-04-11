@@ -10,6 +10,7 @@ namespace E_Commerce.Application.Abstraction.IService
     {
         Task<Result<ProductResponse>> Add(ProductRequest model);
         Task<Result<IEnumerable<ProductResponse>>> ProductsByCategoryId(Guid id);
+        Task<Result<IEnumerable<ProductResponse>>> GetProdusts();
         Task <Result<ProductResponse>> ProductById(Guid id);
         Task <Result<ProductResponse>> DeleteProduct(Guid id);
         Task <Result<ProductResponse>> UpdateProduct(ProductUpdateRequest model);

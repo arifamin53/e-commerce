@@ -16,6 +16,10 @@ const StoreContextProvider=(props)=>{
        }
     }
 
+  useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cartItem))
+}, [cartItem])
+
     const removeFromCart=(itemId)=>{
         setCartItem((prev)=>({...prev,[itemId]:prev[itemId]-1}))
     }

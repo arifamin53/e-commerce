@@ -16,7 +16,10 @@ namespace E_Commerce.Api.EndPoints
                 return await productService.Add(model);
             }).DisableAntiforgery();
 
-
+            app.MapGet("all", async (IProductService productService) =>
+            {
+                return await productService.GetProdusts();
+            });
 
             app.MapGet("{id:guid}", async (Guid id, IProductService productService) =>
             {
