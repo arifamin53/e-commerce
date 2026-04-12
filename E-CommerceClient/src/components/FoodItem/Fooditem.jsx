@@ -3,6 +3,7 @@ import "./fooditem.css"
 import { assets } from '../../assets/frontendassets/frontend_assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 import { ToastContainer, toast } from 'react-toastify';
+import { Base_url } from '../../constents/appUrls';
 
 
 
@@ -15,7 +16,7 @@ const Fooditem = ({id,name,price,description,image}) => {
   return (
     <div className='food-item'>
       <div className='food-item-img-container'>
-        <img className='food-item-img' src={image} alt="" />
+        <img className='food-item-img' src={Base_url+image} alt="" />
         {
         !cartItem[id] ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt="" />
         :

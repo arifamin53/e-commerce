@@ -2,6 +2,7 @@ import axios from "axios";
 import { API_URL } from "../appUrls";
 import { getAuthToken } from "../../serverActions";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const apiClient = axios.create({
         baseURL:API_URL
@@ -26,6 +27,7 @@ apiClient.interceptors.response.use(
       },
 
     function  (error) {
+      // const navigation =useNavigate()
        if (error.response && error.response.status === 400) {
          // Handle unauthorized errors, e.g., redirect to login.
           toast.error('Bad Request: ' + (error.response.data.problemDetails?.title || 'Invalid request'))
@@ -37,10 +39,11 @@ apiClient.interceptors.response.use(
 //         const newToken = await refreshAuthToken();
 //         error.config.headers['Authorization'] = `Bearer ${newToken}`;
 //         // Retry the original request with the new token
-//         return axios(error.config);
+//         return axios(error.config); 
+            //  navigation("/food-app/placeOrder")
                 toast.error('Unauthorized: ' + (error.response.data.problemDetails?.title || 'You are not authorized to access this resource. Please login again.'))
            
-             window.location.href = '/login';
+            
         }
          else if (error.response && error.response.status === 403) {
           // Handle unauthorized errors, e.g., redirect to login.

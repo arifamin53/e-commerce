@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import "./cart.css"
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom'
-const Cart = () => {
+import { Base_url } from '../../constents/appUrls'
+import { CgLaptop } from 'react-icons/cg'
+import { addCartItem } from '../../service/cart/cartServices'
+const Cart = ({setShowLogin}) => {
   const navigate=useNavigate()
-  const {cartItem,food_list,removeFromCart,getTotalCartAmount,setCartItem}=useContext(StoreContext)
+  const {cartItem,food_list,removeFromCart,getTotalCartAmount,setCartItem,products}=useContext(StoreContext)
   const [items,setItems]=useState({});
 
   useEffect(()=>{
@@ -14,10 +17,34 @@ const Cart = () => {
  }
   },[]);
 
-  
+  const addToCart = async ()=>{
+   
+   const items = localStorage.getItem("cart");
+   const parse = items ? JSON.parse(items):{};
+   const model = Object.entries(parse).map(([id,quantity])=>({
+      productId:id,
+       quantity:quantity,
+       unitPrice:0
+   }));
+   
+    const responnse = await addCartItem(model);
+    console.log(responnse)
+    if(responnse.isSuccess){
+      if(responnse.statusCode == 200){
+        console.log("hy my name is arif")
+        navigate("/food-app/placeOrder")
+      }
+      else{
+        console.log("hello mr hoe are you")
+      }
+      // else if(responnse.statusCode == 401){
+      //   console.log("hy my name is arif tantray")
+      // setShowLogin(true)
+      // }
 
- console.log(cartItem)
-  console.log(items)
+    }
+  }
+
   return (
     <div className='cart'>
       <div className='cart-items'>
@@ -32,17 +59,17 @@ const Cart = () => {
         <br />
         <hr />
         {
-          food_list.map((item,index)=>{
-            if(cartItem[item._id]>0){
+          products && products.map((item,index)=>{
+            if(cartItem[item.id]>0){
               return(
                 <div>
                      <div className='cart-items-title cart-items-item'>
-                  <img src={item.image} alt="" />
+                  <img src={Base_url+item.files} alt="" />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
-                  <p>{cartItem[item._id]}</p>
-                  <p>${item.price*cartItem[item._id]}</p>
-                  <p onClick={()=>removeFromCart(item._id)} className='cross'>X</p>
+                  <p>{cartItem[item.id]}</p>
+                  <p>${item.price*cartItem[item.id]}</p>
+                  <p onClick={()=>removeFromCart(item.id)} className='cross'>X</p>
                 </div>
                 <hr />
                 </div>
@@ -71,7 +98,7 @@ const Cart = () => {
               <b>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</b>
             </div>
           </div>
-          <button onClick={()=>navigate('/food-app/place-order')}>Proceed to checkout</button>
+          <button onClick={()=>addToCart()}>Proceed to checkout</button>
         </div>
         <div className='cart-promocode'>
           <div>

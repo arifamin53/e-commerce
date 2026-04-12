@@ -2,11 +2,28 @@ import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/frontendassets/frontend_assets/assets";
 export const  StoreContext=createContext(null)
 import { ToastContainer, toast } from 'react-toastify';
+import { getProducts } from "../service/products/productServices";
+
+
 
 const StoreContextProvider=(props)=>{
     const [cartItem,setCartItem]=useState({});
+    
+ const [products,setProducts]=useState([])
 
+    const fetchingProducts = async () =>{
+      const response = await getProducts();
+      if (response.isSuccess){
+        setProducts(response.value);
+      }
+    }
+
+    useEffect(()=>{
+      fetchingProducts();
+    },[])
+ 
     const addToCart=(itemId)=>{
+        
        if(!cartItem[itemId]){
         setCartItem((prev)=>({...prev,[itemId]:1}))
        }
@@ -15,6 +32,7 @@ const StoreContextProvider=(props)=>{
        
        }
     }
+
 
   useEffect(() => {
   localStorage.setItem("cart", JSON.stringify(cartItem))
@@ -29,7 +47,8 @@ const StoreContextProvider=(props)=>{
         for(const item in cartItem)
         {
             if(cartItem[item]>0){
-                let itemInfo=food_list.find((product)=>product._id===item);
+                let itemInfo=products && products.find((product)=>product.id===item);
+               
                 totalAmount+=itemInfo.price*cartItem[item];
             }
             
@@ -44,7 +63,8 @@ const StoreContextProvider=(props)=>{
       setCartItem,
       addToCart,
       removeFromCart,
-      getTotalCartAmount
+      getTotalCartAmount,
+      products
  }
 
  return(

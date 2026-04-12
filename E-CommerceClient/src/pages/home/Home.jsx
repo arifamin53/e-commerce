@@ -18,7 +18,7 @@ const Home = () => {
       {
         showLogin ? <LoginPOPup setShowLogin={setShowLogin} /> : <></>
       }
-      <Navbar setShowLogin={setShowLogin} />
+      {/* <Navbar setShowLogin={setShowLogin} /> */}
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />

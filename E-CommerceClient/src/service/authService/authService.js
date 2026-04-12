@@ -5,5 +5,5 @@ return (await apiClient.post("user/login",model))?.data;
 }
 
 export const signUp = async (model) =>{
-return (await apiClient.post("user/signup",model))?.data;
+return (await apiClient.post("/user/signup",model))?.data;
 }
