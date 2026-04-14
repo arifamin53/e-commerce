@@ -10,7 +10,7 @@ namespace E_Commerce.Api.EndPoints
         public void AddRoutes(IEndpointRouteBuilder appBulder)
         {
             var app = appBulder.MapGroup("api/carts").WithTags("carts");
-
+            
             app.MapPost("", async (ICartService cartService, [FromBody]CartCompactRequest model) =>
             {
                 return await cartService.AddCart(model);

@@ -17,6 +17,7 @@ namespace E_Commerce.Api.EndPoints
             }).DisableAntiforgery();
 
             app.MapGet("all", async (IProductService productService) =>
+            
             {
                 return await productService.GetProdusts();
             });

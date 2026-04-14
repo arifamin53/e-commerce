@@ -24,6 +24,7 @@ namespace E_Commerce.Api.EndPoints
             }).DisableAntiforgery();
 
             app.MapGet("", async (ICategoryService categoryService) =>
+            
             {
                 return await categoryService.GetCategories();
                

@@ -14,14 +14,16 @@ namespace E_Commerce.Persistence
         public static IServiceCollection AddPersistenceService(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddDbContext<E_CommerceDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(nameof(E_CommerceDbContext))));
-            services.AddScoped<IBaseRepository<BaseEntity>, BaseRepository<BaseEntity>>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IAuthRepository,AuthRepository>();
-            services.AddScoped<ICategoryRepository,CategoryRepository>();
-            services.AddScoped<IAppFileRepository,AppFileRepository>();
-            services.AddScoped<IProductRepository,ProductRepository>();
-            services.AddScoped<ICartRepository,CartRepository>();
-            services.AddScoped<ICartItemRepository,CartItemRepository>();
+            services.AddScoped<IBaseRepository<BaseEntity>, BaseRepository<BaseEntity>>()
+            .AddScoped<IUnitOfWork, UnitOfWork>()
+            .AddScoped<IAuthRepository,AuthRepository>()
+            .AddScoped<ICategoryRepository,CategoryRepository>()
+            .AddScoped<IAppFileRepository,AppFileRepository>()
+            .AddScoped<IProductRepository,ProductRepository>()
+            .AddScoped<ICartRepository,CartRepository>()
+            .AddScoped<ICartItemRepository,CartItemRepository>()
+            .AddScoped<IOrderRepository,OrderRepository>()
+            .AddScoped<IOrderItemRepository,OrderItemRepository>();
             return services;
         }
     }

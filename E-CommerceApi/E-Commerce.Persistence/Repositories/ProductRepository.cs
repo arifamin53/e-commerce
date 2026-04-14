@@ -12,6 +12,8 @@ namespace E_Commerce.Persistence.Repositories
 {
     public class ProductRepository(E_CommerceDbContext context) : BaseRepository<Product>(context), IProductRepository
     {
+        
+
         public async Task<IEnumerable<ProductResponse>> GetProducts()
         {
             var response = await context.Products.Select(p => new ProductResponse() 
@@ -42,6 +44,11 @@ namespace E_Commerce.Persistence.Repositories
         public async Task<ProductResponse> ProductsById(Guid id)
         {
             return await FirstOrDefaultAsync<ProductResponse>("sp_ProductBYId", new { id }, CommandType.StoredProcedure);
+        }
+
+        public IQueryable<Product> Query()
+        {
+          return context.Products;  
         }
     }
 }

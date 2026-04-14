@@ -3,12 +3,17 @@ import "./placeorder.css"
 import { StoreContext } from '../../context/StoreContext'
 import { ToastContainer, toast } from 'react-toastify';
 import {useForm} from "react-hook-form"
+import { orderPlace } from '../../service/orderService/orderService';
 
 const PlaceOrder = () => {
 let {register,handleSubmit}=useForm()
 
-const Deliver=()=>{
-  toast.success("Order deliver Successfully")
+const Deliver= async (model)=>{
+   const response = await orderPlace(model)
+   if(response.isSuccess){
+  toast.success(response.message)
+   }
+
   }
 
 
@@ -19,20 +24,28 @@ const {getTotalCartAmount}=useContext(StoreContext)
       <div className='place-order-left'>
         <p className='title'>Delivery Information</p>
         <div className="multi-fields">
-          <input type="text" placeholder='First Name'/>
+          <input type="text" placeholder='First Name'{...register("name",{
+            required:{
+              message:"name is required"
+            }
+          })}/>
           <input type="text"  placeholder='Last Name'/>
         </div>
-        <input type="email" placeholder='email address'/>
-        <input type="text" placeholder='Street'/>
+        <input type="email" placeholder='email address'{...register("email",{
+          required:{
+            message:"email is required"
+          }
+        })}/>
+        <input type="text" placeholder='Street'{...register("street",{required:{message:"street is required"}})}/>
         <div className="multi-fields">
-          <input type="text" placeholder='City'/>
-          <input type="text"  placeholder='State'/>
+          <input type="text" placeholder='City'{...register("city",{required:{message:"this field is required"}})}/>
+          <input type="text"  placeholder='State'{...register("state",{required:{message:"this field is required"}})}/>
         </div>
         <div className="multi-fields">
-          <input type="text" placeholder='Zip Code'/>
-          <input type="text"  placeholder='Country'/>
+          <input type="text" placeholder='ZipCode'{...register("zip code",{required:{message:"this field is required"}})}/>
+          <input type="text"  placeholder='Country'{...register("country",{required:{message:"this field is required"}})}/>
         </div>
-        <input type="text" placeholder='phone' />
+        <input type="text" placeholder='phone'{...register("contactNo",{required:{message:"this field is required"}})} />
       </div>
 
 
@@ -56,6 +69,7 @@ const {getTotalCartAmount}=useContext(StoreContext)
             </div>
           </div>
           <button >Proceed to Payment</button>
+          <button >Cash On Delivery</button>
         </div>
       </div>
       

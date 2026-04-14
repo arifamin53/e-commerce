@@ -10,11 +10,12 @@ namespace E_Commerce.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ICartService, CartService>();
-            services.AddAutoMapper(cfg => { /* optional global config */ }, typeof(Mapper.UserProfile));
+            services.AddScoped<IAuthService, AuthService>()
+            .AddScoped<ICategoryService, CategoryService>()
+            .AddScoped<IProductService, ProductService>()
+            .AddScoped<ICartService, CartService>()
+            .AddAutoMapper(cfg => { /* optional global config */ }, typeof(Mapper.UserProfile))
+            .AddScoped<IOrderService, OrderService>();
             return services;
         }
     }

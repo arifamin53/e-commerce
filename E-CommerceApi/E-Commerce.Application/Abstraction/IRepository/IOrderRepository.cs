@@ -5,8 +5,7 @@ using System.Text;
 
 namespace E_Commerce.Application.Abstraction.IRepository
 {
-    public interface ICartItemRepository:IBaseRepository<CartItem>
+    public interface IOrderRepository:IBaseRepository<Order>
     {
-        IQueryable<CartItem> Queryble();
     }
 }

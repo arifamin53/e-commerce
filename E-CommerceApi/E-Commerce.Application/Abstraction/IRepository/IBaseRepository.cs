@@ -16,6 +16,7 @@ namespace E_Commerce.Application.Abstraction.IRepository
         public Task UpdateRangeASync(IEnumerable<T> models);
         public Task DeleteAsync(T model);
         public Task DeleteByIdAsync(Guid id);
+        public Task DeleteRangeAasync(IEnumerable<T> models);
         public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression);
         public Task<IEnumerable<T>> GetAllAsync();
         public Task<T?> GetBYIdAsync(Guid id);

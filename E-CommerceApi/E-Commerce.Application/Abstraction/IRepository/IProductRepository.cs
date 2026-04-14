@@ -11,5 +11,8 @@ namespace E_Commerce.Application.Abstraction.IRepository
         Task<IEnumerable<ProductResponse>> ProductsByCategoryId(Guid id);
         Task<ProductResponse> ProductsById(Guid id);
         Task<IEnumerable<ProductResponse>> GetProducts();
+        public IQueryable<Product> Query();
+
+
     }
 }

@@ -30,6 +30,11 @@ namespace E_Commerce.Persistence.Repositories
             await Task.Run(() => context.Remove(model));
         }
 
+        public async Task DeleteRangeAasync(IEnumerable<T> models)
+        {
+            await Task.Run(()=> context.RemoveRange(models));
+        }
+
         public async Task DeleteByIdAsync(Guid id)
         {
             var entity=context.Set<T>().Find(id);

@@ -7,11 +7,7 @@ using System.Text;
 
 namespace E_Commerce.Persistence.Repositories
 {
-    public class CartItemRepository(E_CommerceDbContext context) : BaseRepository<CartItem>(context), ICartItemRepository
+    public class OrderRepository(E_CommerceDbContext context):BaseRepository<Order>(context),IOrderRepository
     {
-        public IQueryable<CartItem> Queryble()
-        {
-            return context.CartItems;
-        }
     }
 }

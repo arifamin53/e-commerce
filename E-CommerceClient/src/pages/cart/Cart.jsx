@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { Base_url } from '../../constents/appUrls'
 import { CgLaptop } from 'react-icons/cg'
 import { addCartItem } from '../../service/cart/cartServices'
+import { toast } from 'react-toastify'
 const Cart = ({setShowLogin}) => {
   const navigate=useNavigate()
   const {cartItem,food_list,removeFromCart,getTotalCartAmount,setCartItem,products}=useContext(StoreContext)
@@ -17,33 +18,34 @@ const Cart = ({setShowLogin}) => {
  }
   },[]);
 
-  const addToCart = async ()=>{
-   
-   const items = localStorage.getItem("cart");
-   const parse = items ? JSON.parse(items):{};
-   const model = Object.entries(parse).map(([id,quantity])=>({
-      productId:id,
-       quantity:quantity,
-       unitPrice:0
-   }));
-   
-    const responnse = await addCartItem(model);
-    console.log(responnse)
-    if(responnse.isSuccess){
-      if(responnse.statusCode == 200){
-        console.log("hy my name is arif")
-        navigate("/food-app/placeOrder")
-      }
-      else{
-        console.log("hello mr hoe are you")
-      }
-      // else if(responnse.statusCode == 401){
-      //   console.log("hy my name is arif tantray")
-      // setShowLogin(true)
-      // }
+ const addToCart = async () => {
+  const items = localStorage.getItem("cart");
+  const parse = items ? JSON.parse(items) : {};
 
+  const model = Object.entries(parse).map(([id, quantity]) => ({
+    productId: id,
+    quantity: quantity,
+    unitPrice:0
+  }));
+
+  try {
+    const response = await addCartItem(model);
+
+    if (response.isSuccess && response.statusCode === 200) {
+      toast.success(response.message)
+      navigate("//food-app/place-order");
+    }
+
+  } catch (error) {
+    if (error.response) {
+      const status = error.response.status;
+
+      if (status === 401) {
+        setShowLogin(true);
+      }
     }
   }
+};
 
   return (
     <div className='cart'>
