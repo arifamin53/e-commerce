@@ -48,9 +48,10 @@ namespace E_Commerce.Persistence.Repositories
             return Task.Run(() => context.Update(model));   
         }
 
-        public Task UpdateBYIdAsync(Guid id)
+        public async Task UpdateBYIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = context.Set<T>().Find(id);
+            await Task.Run(()=>context.Update(entity));
         }
 
         public Task UpdateRangeASync(IEnumerable<T> models)

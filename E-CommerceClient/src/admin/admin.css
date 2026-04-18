@@ -30,7 +30,7 @@ body {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s ease;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -94,7 +94,7 @@ body {
 ======================= */
 .admin-header {
   background: white;
-  padding: 18px 24px;
+  padding: 18px 300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -142,6 +142,8 @@ body {
   padding: 24px;
   width: 100%;
   overflow-x: auto;
+  margin:1px 200px;
+  
 }
 
 /* =======================

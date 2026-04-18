@@ -43,16 +43,7 @@ namespace E_Commerce.Application.Services
 
                 await authRepository.UpdateBYIdAsync(user.Id);
 
-                var order = await orderRepository.FirstOrDefaultAsync(x =>x.UserId == userId);
                
-
-                var o = new Order()
-                {
-                    TotalAmount = model.TotalAmount,
-                    UserId = user.Id,
-                };
-                await orderRepository.AddAsync(o);
-
                 var cart = await cartRepository.FirstOrDefaultAsync(x => x.UserId == userId);
 
                 var cartItems = await cartItemRepository
@@ -60,6 +51,15 @@ namespace E_Commerce.Application.Services
                     .Where(x => x.CartId == cart.Id)
                     .ToListAsync();
                 var totalPrice = cartItems.Sum(x => x.UnitPrice * x.Quantity);
+
+                var o = new Order()
+                {
+                    TotalAmount = totalPrice,
+                    UserId = user.Id,
+                };
+                await orderRepository.AddAsync(o);
+
+               
 
                 List<OrderItem> items = new List<OrderItem>();
 
@@ -70,7 +70,7 @@ namespace E_Commerce.Application.Services
                         OrderId = o.Id,
                         ProductId = item.ProductId,
                         Quantity = item.Quantity,
-                        UnitPrice = totalPrice,
+                        UnitPrice = item.UnitPrice,
                         
                     };
                     items.Add(orderItem);
@@ -89,11 +89,11 @@ namespace E_Commerce.Application.Services
                         ContactNo=user.ContactNo,
                         Country=user.Country,
                         Email=user.Email,
-                        Id=order.Id,
+                        Id=o.Id,
                         Name=user.Name,
                         State=user.State,
                         Street=user.Street,
-                        TotalAmount=order.TotalAmount,
+                        TotalAmount=totalPrice,
                         ZipCode = user.ZipCode
                     };
 

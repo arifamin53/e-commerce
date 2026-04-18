@@ -42,7 +42,7 @@ const {getTotalCartAmount}=useContext(StoreContext)
           <input type="text"  placeholder='State'{...register("state",{required:{message:"this field is required"}})}/>
         </div>
         <div className="multi-fields">
-          <input type="text" placeholder='ZipCode'{...register("zip code",{required:{message:"this field is required"}})}/>
+          <input type="text" placeholder='ZipCode'{...register("zipCode",{required:{message:"this field is required"}})}/>
           <input type="text"  placeholder='Country'{...register("country",{required:{message:"this field is required"}})}/>
         </div>
         <input type="text" placeholder='phone'{...register("contactNo",{required:{message:"this field is required"}})} />

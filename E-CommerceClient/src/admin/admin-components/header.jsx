@@ -1,3 +1,4 @@
+import { Bell } from "lucide-react";
 import React from "react";
 
 const Header = () => {
@@ -11,6 +12,9 @@ const Header = () => {
           className="admin-avatar"
         />
         <span>Admin</span>
+      </div>
+      <div>
+         <Bell size={24} />
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 .header{
     height: 34vw;
-    margin: 30px auto;
+    /* margin: ; */
     background: url("../../assets/frontendassets/frontend_assets/header_img.png")no-repeat;
-    background-size: contain;
+    background-size: cover;
     position: relative;
 }
 .header-contents{

@@ -16,7 +16,7 @@ import {
 const Sidebar = () => {
   const navigate = useNavigate()
   return (
-    <div className="sidebar">
+    <div className="sidebar ">
       <h2 className="logo">Admin Panel</h2>
 
       <nav className="sidebar-links">
@@ -44,7 +44,7 @@ const Sidebar = () => {
           <FaMoneyBillWave /> <span>Payments</span>
         </NavLink>
 
-        <NavLink to="/food-app/admin/all-categories" className="nav-item">
+        <NavLink to="/admin/all-categories" className="nav-item">
           <FaTags /> <span>Categories</span>
         </NavLink>
 
