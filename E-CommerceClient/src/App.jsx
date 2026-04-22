@@ -12,6 +12,7 @@ import Dashboard from './admin/AdminPages/Dashboard'
 import AddCategory from './admin/AdminPages/category/add-category'
 import AllCategories from './admin/AdminPages/category/get-categories'
 import EditCategory from './admin/AdminPages/category/Edit-Category'
+import GetOrders from './admin/AdminPages/orders/orders'
 
 
 const App = () => {
@@ -42,6 +43,8 @@ const App = () => {
           <Route path="/admin/add-category" element={<AddCategory />} />
           <Route path="/admin/all-categories" element={<AllCategories />} />
           <Route path="/admin/edit-category/:id" element={<EditCategory />} />
+          <Route path="/admin/orders" element={<GetOrders />} />
+          
           </Route>
         </Routes>
       </div>

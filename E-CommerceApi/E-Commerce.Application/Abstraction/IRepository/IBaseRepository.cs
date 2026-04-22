@@ -21,6 +21,8 @@ namespace E_Commerce.Application.Abstraction.IRepository
         public Task<IEnumerable<T>> GetAllAsync();
         public Task<T?> GetBYIdAsync(Guid id);
 
+        public Task<int> CountAsync(Expression<Func<T,bool>> expression);
+
         #region DapperMethods
         public Task<int> ExecuteAsync(string sql, object? param, CommandType commandType = CommandType.Text, IDbTransaction? dbTransaction = null);
         public  Task<TEntity?> FirstOrDefaultAsync<TEntity>(string sql, object? param, CommandType commandType = CommandType.Text, IDbTransaction? transaction = null);

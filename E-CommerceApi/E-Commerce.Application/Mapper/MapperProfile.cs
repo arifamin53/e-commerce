@@ -4,6 +4,7 @@ using E_Commerce.Application.RRModels.Auth;
 using E_Commerce.Application.RRModels.Cart;
 using E_Commerce.Application.RRModels.CartItem;
 using E_Commerce.Application.RRModels.Categry;
+using E_Commerce.Application.RRModels.Order;
 using E_Commerce.Application.RRModels.Product;
 using System;
 using System.Collections.Generic;
@@ -59,4 +60,13 @@ public class CartItemProfile : Profile
         CreateMap<CartItem,CartItemResponse>().ReverseMap();
     }
 }
+
+public class OrderProfile : Profile
+{
+    public OrderProfile()
+    {
+        CreateMap<Order, OrderCompactResponse>().ReverseMap();
+    }
+}
+
 

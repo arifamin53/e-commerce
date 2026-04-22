@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using E_commerce.Domain.Entities;
+using E_commerce.Domain.Enums;
 using E_Commerce.Application.Abstraction.Appencription;
 using E_Commerce.Application.Abstraction.Identity;
 using E_Commerce.Application.Abstraction.IRepository;
@@ -9,8 +10,6 @@ using E_Commerce.Application.RRModels.Order;
 using E_Commerce.Application.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-
-
 
 namespace E_Commerce.Application.Services
 {
@@ -104,6 +103,50 @@ namespace E_Commerce.Application.Services
             }
             return Result<OrderResponse>.Failure("Not Found ", StatusCodes.Status404NotFound);
 
+        }
+
+        public async Task<Result<IEnumerable<OrderCompactResponse>>> GetOrderByStatus()
+        {
+            var orders = await orderRepository.GetOrderByStatus();
+            if(orders  is null)
+            {
+                return Result<IEnumerable<OrderCompactResponse>>.Failure("no data found", StatusCodes.Status404NotFound); 
+            }
+
+            return Result<IEnumerable<OrderCompactResponse>>.Success(orders);
+
+        }
+
+        public async Task<Result<int>> OrderCount()
+        {
+            var count = await orderRepository.CountAsync(x => x.OrderStatus == AppEnums.Status.Pending);
+            if(count == 0)
+            {
+                return Result<int>.Success(0, "No order is pending", StatusCodes.Status204NoContent);
+            }
+            return Result<int>.Success(1);
+        }
+
+        public async Task<Result<OrderCompactResponse>> UpdateOrderStatus(OrderUpdateStatusRequest model)
+        {
+            var order = await orderRepository.FirstOrDefaultAsync( x => x.Id == model.Id);
+            if(order is null)
+            {
+                return Result<OrderCompactResponse>.Failure("Not found", StatusCodes.Status404NotFound);
+            }
+
+            order.OrderStatus = model.OrderStatus;
+            order.UpdatedAt=true;
+
+            await orderRepository.UpdateBYIdAsync(order.Id);
+            var returnValue = await unitOfWork.SaveChanegeAsync();
+            if(returnValue > 0)
+            {
+                var response = mapper.Map<OrderCompactResponse>(order);
+                return Result<OrderCompactResponse>.Success(response,"Order Updated Successfully");
+            }
+
+            return Result<OrderCompactResponse>.Failure("someThing went wrong please try after someTime", StatusCodes.Status500InternalServerError);
         }
     }
 }

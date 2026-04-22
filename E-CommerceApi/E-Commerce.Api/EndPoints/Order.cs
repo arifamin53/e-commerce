@@ -14,6 +14,23 @@ namespace E_Commerce.Api.EndPoints
             {
                 return await orderService.AddOrderAsync(model);
             });
+
+            group.MapGet("", async (IOrderService orderService) =>
+            
+            {
+                return await orderService.GetOrderByStatus();
+            });
+            
+            group.MapGet("count", async (IOrderService orderService) =>
+            {
+                return await orderService.OrderCount();
+            });
+
+
+            group.MapPut("", async (IOrderService orderservice,OrderUpdateStatusRequest model) =>
+            {
+                return await orderservice.UpdateOrderStatus(model);
+            });
         }
     }
 }

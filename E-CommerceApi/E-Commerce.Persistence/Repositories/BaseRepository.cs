@@ -95,7 +95,13 @@ namespace E_Commerce.Persistence.Repositories
             return await connection.QueryAsync<TEntity>(sql, parameter);
         }
 
-     
+        public async Task<int> CountAsync(Expression<Func<T,bool>> expression)
+        {
+            return await context.Set<T>().CountAsync(expression);
+               
+        }
+
+
         #endregion
     }
 }
