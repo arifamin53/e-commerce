@@ -51,7 +51,7 @@ namespace E_Commerce.Persistence.Repositories
         public async Task UpdateBYIdAsync(Guid id)
         {
             var entity = context.Set<T>().Find(id);
-            await Task.Run(()=>context.Update(entity));
+            await Task.Run(()=>context?.Update(entity!));
         }
 
         public Task UpdateRangeASync(IEnumerable<T> models)

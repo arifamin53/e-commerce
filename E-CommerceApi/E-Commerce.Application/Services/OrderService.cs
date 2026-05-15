@@ -122,7 +122,7 @@ namespace E_Commerce.Application.Services
             var count = await orderRepository.CountAsync(x => x.OrderStatus == AppEnums.Status.Pending);
             if(count == 0)
             {
-                return Result<int>.Success(0, "No order is pending", StatusCodes.Status204NoContent);
+                return Result<int>.Success(0, "No order is pending", StatusCodes.Status200OK);
             }
             return Result<int>.Success(1);
         }

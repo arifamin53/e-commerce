@@ -39,7 +39,7 @@ const App = () => {
       
        
           <Route path='/admin' element={<AdminLayout />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route  index element={<Dashboard />} />
           <Route path="/admin/add-category" element={<AddCategory />} />
           <Route path="/admin/all-categories" element={<AllCategories />} />
           <Route path="/admin/edit-category/:id" element={<EditCategory />} />

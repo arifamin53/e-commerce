@@ -13,6 +13,7 @@ export const getCount = async ()=>{
 }
 
 
-export const updateOrderStatus = async (id,newStatus)=>{
-  return (await apiClient.put("orders",{id:id,orderStatus:newStatus}))?.data;
+export const updateOrderStatus = async (model)=>{
+    console.log(model)
+  return (await apiClient.put("orders",model))?.data;
 }

@@ -16,21 +16,24 @@ namespace E_Commerce.Persistence.Repositories
         public async Task<IEnumerable<OrderCompactResponse>> GetOrderByStatus()
         {
             var result = await context.Orders
-            .Select(o => new OrderCompactResponse
-            {
-                Id = o.Id,
-                TotalAmount = o.TotalAmount,
-                Name = o.User.Name,
-                Email = o.User.Email,
-                ContactNo = o.User.ContactNo,
-                City = o.User.City,
-                Country = o.User.Country,
-                State = o.User.State,
-                Status = AppEnums.Status.Pending,
-                Street = o.User.Street,
-                ZipCode = o.User.ZipCode,
-                OrderDate = o.OrderDate
-            }).ToListAsync();
+                .Include(o => o.User)
+                .OrderByDescending(o => o.OrderDate)
+                .Select(o => new OrderCompactResponse
+                {
+                    Id = o.Id,
+                    TotalAmount = o.TotalAmount,
+                    Name = o.User.Name,
+                    Email = o.User.Email,
+                    ContactNo = o.User.ContactNo,
+                    City = o.User.City,
+                    Country = o.User.Country,
+                    State = o.User.State,
+                    Status = o.OrderStatus,
+                    Street = o.User.Street,
+                    ZipCode = o.User.ZipCode,
+                    OrderDate = o.OrderDate
+                })
+                .ToListAsync();
 
             return result;
         }

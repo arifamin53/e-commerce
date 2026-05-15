@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   FaTachometerAlt,
   FaBoxOpen,
@@ -14,52 +14,50 @@ import {
 } from "react-icons/fa";
 
 const Sidebar = () => {
-  const navigate = useNavigate()
   return (
-    <div className="sidebar ">
-      <h2 className="logo">Admin Panel</h2>
+    <div className="h-screen bg-slate-800 text-white p-4 flex flex-col">
+      
+      {/* Logo */}
+      <h2 className="text-xl font-bold mb-6">Admin Panel</h2>
 
-      <nav className="sidebar-links">
-        <NavLink to="/admin/dashboard" className="nav-item">
-          <FaTachometerAlt /> <span>Dashboard</span>
-        </NavLink>
+      {/* Links */}
+      <nav className="flex flex-col gap-2 flex-1">
 
-        <NavLink to="/admin/products" className="nav-item">
-          <FaBoxOpen /> <span>Products</span>
-        </NavLink>
+        {[
+          // { to: "/admin/dashboard", icon: <FaTachometerAlt />, label: "Dashboard" },
+          { to: "/admin/products", icon: <FaBoxOpen />, label: "Products" },
+          { to: "/admin/add-product", icon: <FaPlus />, label: "Add Product" },
+          { to: "/admin/orders", icon: <FaShoppingCart />, label: "Orders" },
+          { to: "/admin/users", icon: <FaUsers />, label: "Users" },
+          { to: "/admin/payments", icon: <FaMoneyBillWave />, label: "Payments" },
+          { to: "/admin/all-categories", icon: <FaTags />, label: "Categories" },
+          { to: "/admin/reports", icon: <FaChartBar />, label: "Reports" },
+          { to: "/admin/settings", icon: <FaCog />, label: "Settings" },
+        ].map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 rounded-lg transition 
+              ${isActive ? "bg-blue-600" : "hover:bg-slate-700"}`
+            }
+          >
+            {item.icon}
+            <span>{item.label}</span>
+          </NavLink>
+        ))}
 
-        <NavLink to="/admin/add-product" className="nav-item">
-          <FaPlus /> <span>Add Product</span>
-        </NavLink>
-
-        <NavLink to="/admin/orders" className="nav-item">
-          <FaShoppingCart /> <span>Orders</span>
-        </NavLink>
-
-        <NavLink to="/admin/users" className="nav-item">
-          <FaUsers /> <span>Users</span>
-        </NavLink>
-
-        <NavLink to="/admin/payments" className="nav-item">
-          <FaMoneyBillWave /> <span>Payments</span>
-        </NavLink>
-
-        <NavLink to="/admin/all-categories" className="nav-item">
-          <FaTags /> <span>Categories</span>
-        </NavLink>
-
-        <NavLink to="/admin/reports" className="nav-item">
-          <FaChartBar /> <span>Reports</span>
-        </NavLink>
-
-        <NavLink to="/admin/settings" className="nav-item">
-          <FaCog /> <span>Settings</span>
-        </NavLink>
-
-        <NavLink to="/logout" className="nav-item logout">
-          <FaSignOutAlt /> <span>Logout</span>
-        </NavLink>
       </nav>
+
+      {/* Logout */}
+      <NavLink
+        to="/logout"
+        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-600 mt-4"
+      >
+        <FaSignOutAlt />
+        <span>Logout</span>
+      </NavLink>
+
     </div>
   );
 };

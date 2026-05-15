@@ -1,44 +1,64 @@
 import { Bell } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/StoreContext";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { getCount, getOrderByStatus } from "../../service/orderService/orderService";
+import { useNavigate } from "react-router-dom";
+import { getCount } from "../../service/orderService/orderService";
 
 const Header = () => {
   const navigate = useNavigate();
-  const {getTotalCartAmount}=useContext(StoreContext)
-  const [orders,setOrders]=useState()
+  const { getTotalCartAmount } = useContext(StoreContext);
+  const [orders, setOrders] = useState(0);
 
-  const fetchingOrdersBySrtatus = async () =>{
-    const response = await getCount();
-    if(response.isSuccess){
-      setOrders(response.value)
+  const fetchingOrdersByStatus = async () => {
+    try {
+      const response = await getCount();
+      if (response.isSuccess) {
+        setOrders(response.value);
+      }
+    } catch (err) {
+      console.error(err);
     }
-  }
+  };
 
-  useEffect(()=>{
-  fetchingOrdersBySrtatus();
-  },[])
+  useEffect(() => {
+    fetchingOrdersByStatus();
+  }, []);
 
-  
   return (
-    <div className="admin-header">
-      <h1>Admin Dashboard</h1>
-      <div className="admin-user">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="Admin"
-          className="admin-avatar"
-        />
-        <span>Admin</span>
-      </div>
-     <div className="relative cursor-pointer">
-        <Bell size={24} onClick={()=>navigate("/admin/orders")}/>
+    <div className="h-full bg-white shadow flex items-center justify-between px-6">
+      
+      {/* Title */}
+      <h1 className="text-lg font-semibold text-gray-700">
+        Admin Dashboard
+      </h1>
 
-        {/* Notification Badge */}
-        <span className="absolute -top-5 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-          {orders}
-        </span>
+      {/* Right Section */}
+      <div className="flex items-center gap-6">
+        
+        {/* Notification */}
+        <div
+          className="relative cursor-pointer"
+          onClick={() => navigate("/admin/orders")}
+        >
+          <Bell className="text-gray-600 hover:text-black" size={22} />
+
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            {orders}
+          </span>
+        </div>
+
+        {/* User */}
+        <div className="flex items-center gap-2">
+          <img
+            src="https://via.placeholder.com/40"
+            alt="Admin"
+            className="w-9 h-9 rounded-full"
+          />
+          <span className="text-sm text-gray-700 font-medium">
+            Admin
+          </span>
+        </div>
+
       </div>
     </div>
   );

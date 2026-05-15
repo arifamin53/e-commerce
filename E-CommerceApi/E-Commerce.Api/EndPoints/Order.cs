@@ -21,7 +21,7 @@ namespace E_Commerce.Api.EndPoints
                 return await orderService.GetOrderByStatus();
             });
             
-            group.MapGet("count", async (IOrderService orderService) =>
+            group.MapGet("count", async (IOrderService orderService) => 
             {
                 return await orderService.OrderCount();
             });
